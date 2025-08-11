@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import { Carousel, Flex } from "antd";
 import { ExtendedRecordMap } from "notion-types";
+import Image from "next/image";
 
 type Props = {
   recordMap: ExtendedRecordMap;
@@ -22,9 +23,6 @@ const Collection = dynamic(() => import("react-notion-x/build/third-party/collec
   ssr: false,
 });
 const Equation = dynamic(() => import("react-notion-x/build/third-party/equation").then((m) => m.Equation), {
-  ssr: false,
-});
-const NotionModal = dynamic(() => import("react-notion-x/build/third-party/modal").then((m) => m.Modal), {
   ssr: false,
 });
 
@@ -78,9 +76,11 @@ export default function NotionPopup({ recordMap }: Props) {
         <Carousel arrows={true} autoplay pauseOnFocus={false} pauseOnHover={false} style={{ height: "100%" }}>
           {images.map((imageUrl, index) => (
             <div key={index} style={{ width: "100%", height: "100%" }}>
-              <img
+              <Image
                 src={imageUrl}
                 alt={`Notion Image ${index + 1}`}
+                width={1000}
+                height={1000}
                 style={{
                   width: "100%",
                   height: "100%",
@@ -99,9 +99,11 @@ export default function NotionPopup({ recordMap }: Props) {
     return (
       <div style={{ width: "100%", height: "100%", overflow: "hidden" }}>
         <Flex style={{ width: "100%", height: "100%" }}>
-          <img
+          <Image
             src={images[0]}
             alt="Notion Image"
+            width={1000}
+            height={1000}
             style={{
               width: "100%",
               height: "100%",
